@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsFeed</string>
+    <string name="test_str">Australia\'s most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.</string>
 </resources>

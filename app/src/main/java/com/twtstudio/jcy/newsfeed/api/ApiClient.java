@@ -43,7 +43,8 @@ public class ApiClient {
                 .build();
 
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(" https://newsapi.org/v1/")
+                .baseUrl("https://newsapi.org/v1/")
+                .client(client)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -78,6 +79,10 @@ public class ApiClient {
 
     public static ApiClient getInstance(){
         return SingletonHolder.INSTANCE;
+    }
+
+    public static NewsApi getService(){
+        return SingletonHolder.INSTANCE.mService;
     }
 
     public Subscription getSouces(Subscriber subscriber){

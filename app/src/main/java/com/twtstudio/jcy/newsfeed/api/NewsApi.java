@@ -15,7 +15,7 @@ import rx.Observable;
 
 public interface NewsApi {
     @GET("articles")
-    Observable<Articles> getArticles(@Query("source") String source,@Query("sortBy") String sortBy);
+    Observable<Articles> getArticles(@Query("source") String source);
 
     @GET("sources")
     Observable<Sources> getSources(@Query("language") String language);

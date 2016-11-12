@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.twtstudio.jcy.newsfeed.sources.NewItemViewModel"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+        bind:clickCommand="@{viewmodel.itemClickCommand}"
+        android:layout_margin="2dp"
+        android:elevation="2dp"
+        app:cardCornerRadius="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitCenter"
+            bind:placeholderImageRes="@drawable/test"
+            bind:uri="@{viewmodel.imageUrl}"/>
+
+        <LinearLayout
+            android:background="#78232222"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewmodel.name}"
+                android:textSize="22sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewmodel.description}"
+                android:maxLines="2"
+                android:textColor="#ece2e2"
+                android:textSize="17sp"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>
