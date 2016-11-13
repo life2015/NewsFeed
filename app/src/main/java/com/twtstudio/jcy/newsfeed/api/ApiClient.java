@@ -95,7 +95,7 @@ public class ApiClient {
     }
 
     public Subscription getArticles(String source,Subscriber subscriber){
-        Subscription subscription = mService.getArticles(source,"top")
+        Subscription subscription = mService.getArticles(source)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -37,7 +37,7 @@ public class DetailViewModel implements ViewModel{
     public final ItemViewSelector<DetailItemViewModel> itemView = new BaseItemViewSelector<DetailItemViewModel>() {
         @Override
         public void select(ItemView itemView, int position, DetailItemViewModel item) {
-//            itemView.set(BR.viewmodel, R.layout.item_news)
+            itemView.set(BR.viewmodel, R.layout.item_news_detail);
         }
     };
 

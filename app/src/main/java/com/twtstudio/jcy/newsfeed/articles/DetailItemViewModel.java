@@ -1,7 +1,9 @@
 package com.twtstudio.jcy.newsfeed.articles;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableField;
+import android.net.Uri;
 
 import com.kelin.mvvmlight.base.ViewModel;
 import com.kelin.mvvmlight.command.ReplyCommand;
@@ -27,7 +29,9 @@ public class DetailItemViewModel implements ViewModel{
     public final ObservableField<String> time = new ObservableField<>();
 
     public ReplyCommand itemClickCommand = new ReplyCommand(()->{
-
+        Uri uri = Uri.parse(url.get());
+        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+        mContext.startActivity(intent);
     });
 
     public DetailItemViewModel(Context context, Articles.ArticlesBean articlesBean) {
