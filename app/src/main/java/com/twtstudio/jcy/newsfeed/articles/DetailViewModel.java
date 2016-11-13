@@ -25,7 +25,7 @@ import rx.schedulers.Schedulers;
  * @TwtStudio Mobile Develop Team
  */
 
-public class DetailViewModel implements ViewModel{
+public class DetailViewModel implements ViewModel {
 
     private SourceDetailActivity mActivity;
 
@@ -56,7 +56,7 @@ public class DetailViewModel implements ViewModel{
         loadDetailList();
     }
 
-    public void loadDetailList(){
+    public void loadDetailList() {
         viewStyle.isRefreshing.set(true);
 
         Observable<Notification<Articles>> newsDetails = ApiClient.getService()
@@ -70,9 +70,11 @@ public class DetailViewModel implements ViewModel{
         newsDetails.filter(Notification::isOnNext)
                 .map(articlesNotification -> articlesNotification.getValue())
                 .filter(articles -> !articles.articles.isEmpty())
-                .doOnNext(articles -> mArticles = articles )
+                .doOnNext(articles -> {
+                    itemViewModel.clear();
+                    mArticles = articles;})
                 .doAfterTerminate(() -> viewStyle.isRefreshing.set(false))
                 .flatMap(articles -> Observable.from(articles.articles))
-                .subscribe(articlesBean -> itemViewModel.add(new DetailItemViewModel(mActivity,articlesBean)));
+                .subscribe(articlesBean -> itemViewModel.add(new DetailItemViewModel(mActivity, articlesBean)));
     }
 }

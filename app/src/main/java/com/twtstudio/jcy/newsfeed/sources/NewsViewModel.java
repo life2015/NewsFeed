@@ -62,6 +62,7 @@ public class NewsViewModel implements ViewModel {
 
         viewStyle.isRefreshing.set(true);
 
+
         Observable<Notification<Sources>> newsSources =
                 ApiClient.getService().getSources("en")
                         .subscribeOn(Schedulers.io())
@@ -72,7 +73,10 @@ public class NewsViewModel implements ViewModel {
         newsSources.filter(Notification::isOnNext)
                 .map(sourcesNotification -> sourcesNotification.getValue())
                 .filter(sources -> !sources.sources.isEmpty())
-                .doOnNext(sources -> mSources = sources)
+                .doOnNext(sources -> {
+                    itemViewModel.clear();
+                    mSources = sources;
+                })
                 .doAfterTerminate(() -> viewStyle.isRefreshing.set(false))
                 .flatMap(sources -> Observable.from(sources.sources))
                 .subscribe(sourcesBean -> itemViewModel.add(new NewItemViewModel(mActivity, sourcesBean)));
